@@ -6,7 +6,13 @@ using namespace std;
 const int LEBAR = 80;
 const int TINGGI = 24;
 
+int pKiriX = 4; 
+int pKiriY = TINGGI / 2 - 2;  
+int pKiriTinggi = 7;   
+char pKiriSimbol = '#';  
 
+int pKananX = LEBAR - 5;
+int pKananY = TINGGI / 2 - 2;
 
 
 int main() {
