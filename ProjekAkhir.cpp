@@ -38,6 +38,23 @@ void simpenSkorKeFile()
     }
 }
 
+// Menampilkan skor
+void gambarSkor() {
+
+    //Skor kiri di pojok kiri atas
+    mvprintw(0, 2, "%d", skorKiri );
+
+    //Skor kanan di pojok kanan atas
+    mvprintw(0, LEBAR - 4, "%d", skorKanan);
+
+}
+void simpenSkor() {
+    if(skor < 10){
+        riwayatSkor[skor] = skorKiri - skorKanan;
+        skor++;
+    }
+}
+
 
 
 int main() {
