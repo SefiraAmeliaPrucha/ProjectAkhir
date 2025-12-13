@@ -128,7 +128,17 @@ int main() {
     curs_set(0);
     nodelay(stdscr, TRUE);
 
+       bool jalan = true;
 
+    
+    while (jalan) {
+        inputPemain(jalan);
+        gerakBola();
+        gerakPaddleKanan();
+        gambar();
+
+        napms(75); 
+    }
 
     endwin(); 
     return 0;
