@@ -55,7 +55,70 @@ void simpenSkor() {
     }
 }
 
+oid gambar() {
+    clear();           // hapus layar
+    gambarSkor();
 
+    // Gambar bola
+    mvaddch(bolaY, bolaX, bolaSimbol);
+
+    // Gambar paddle kiri
+    for (int i = 0; i < pKiriTinggi; i++)
+        mvaddch(pKiriY + i, pKiriX, pKiriSimbol);
+
+    // Gambar paddle kanan
+    for (int i = 0; i < pKananTinggi; i++)
+        mvaddch(pKananY + i, pKananX, pKananSimbol);
+
+    refresh();         // tampilkan ke layar
+}
+
+void gerakBola() {
+    int nextX = bolaX + arahBolaX;
+    int nextY = bolaY + arahBolaY;
+
+    if (nextY <=0 || nextY >= TINGGI - 1) { //PANTUL ATAS BAWAH
+        arahBolaY = -arahBolaY;  
+    }
+
+    if (nextX <= 0) {   // bola keluar kiri
+        skorKanan++;
+        simpenSkor();
+        bolaX = LEBAR / 2;
+        bolaY = TINGGI / 2;
+        arahBolaY = 1;
+        arahBolaY = -1;
+        return;
+    }
+    
+    if (nextX >= LEBAR - 1) { // bola keluar kanan
+        skorKiri++;
+        simpenSkor();
+        bolaX = LEBAR / 2;
+        bolaY = TINGGI / 2;
+        arahBolaX = -1;
+        arahBolaY = -1;
+        return;
+    }
+
+    if (nextX == pKiriX) {
+        if (nextY >= pKiriY && nextY < pKiriY + pKiriTinggi) {
+
+            arahBolaX = -arahBolaX;
+        }
+    }
+
+    // Tabrak paddle kanan
+    if (nextX == pKananX) {
+        if (nextY >= pKananY && nextY < pKananY + pKananTinggi) {
+            arahBolaX = -arahBolaX;
+        }
+    }
+
+    // Update posisi bola
+    bolaX += arahBolaX;
+    bolaY += arahBolaY;
+}
 
 int main() {
     
