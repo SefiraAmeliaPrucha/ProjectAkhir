@@ -55,7 +55,7 @@ void simpenSkor() {
     }
 }
 
-oid gambar() {
+void gambar() {
     clear();           // hapus layar
     gambarSkor();
 
@@ -120,6 +120,16 @@ void gerakBola() {
     bolaY += arahBolaY;
 }
 
+// Paddle kanan bergerak otomatis (AI sederhana)
+void gerakPaddleKanan() {
+    if (bolaY < pKananY && pKananY > 0)
+        pKananY--; // gerak ke atas
+    else if (bolaY > pKananY + pKananTinggi &&
+             pKananY + pKananTinggi < TINGGI - 1)
+        pKananY++;
+}
+
+
 int main() {
     
     initscr();
@@ -127,19 +137,15 @@ int main() {
     cbreak();
     curs_set(0);
     nodelay(stdscr, TRUE);
-
-       bool jalan = true;
-
+    bool jalan = true;
     
     while (jalan) {
         inputPemain(jalan);
         gerakBola();
         gerakPaddleKanan();
         gambar();
-
         napms(75); 
     }
-
     endwin(); 
     return 0;
 }
