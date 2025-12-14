@@ -129,6 +129,23 @@ void gerakPaddleKanan() {
         pKananY++;
 }
 
+// Input pemain untuk paddle kiri
+void inputPemain(bool &jalan) {
+    int tombol = getch();  // baca input
+
+    if (tombol == 'w' && pKiriY > 0)
+        pKiriY--;
+
+    if (tombol == 's' && pKiriY + pKiriTinggi < TINGGI - 1)
+        pKiriY++;
+
+    if (tombol == 'q'){
+        simpenSkorKeFile();
+        jalan = false;
+    }
+}
+
+
 
 int main() {
     
